@@ -19,7 +19,7 @@ class MY_Email extends CI_Email
     var $_attachments    = array();
     var $_mailtype       = 'html';
 
-    public function initialize($config) {
+    public function initialize($config = array()) {
 
         // Set our mailtype
         if(isset($config['mailtype']) && $config['mailtype'] == 'text') $this->_mailtype = 'text';
@@ -93,7 +93,7 @@ class MY_Email extends CI_Email
         return $this;
     }
 
-    public function attach($attachment)
+    public function attach($filename, $disposition = 'attachment')
     {
         return $this->attachments($attachment);
     }
