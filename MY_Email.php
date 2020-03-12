@@ -1,6 +1,7 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 use Mailgun\Mailgun;
+use Mailgun\HttpClientConfigurator;
 
 class MY_Email extends CI_Email
 {
@@ -100,7 +101,11 @@ class MY_Email extends CI_Email
 
     public function send()
     {
-        $mailgun = new Mailgun($this->_mailgun_key);
+        $configurator = new HttpClientConfigurator();
+        $configurator->setEndpoint('https://api.eu.mailgun.net/v3/'.$this->_mailgun_domain.'/messages');
+        $configurator->setDebug(true);
+        $configurator->setApiKey($this->_mailgun_key);
+        $mailgun = Mailgun::configure($configurator);
 
         $data = array(
             'from'           => $this->_from,
