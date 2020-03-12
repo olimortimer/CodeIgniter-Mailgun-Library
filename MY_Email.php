@@ -114,6 +114,11 @@ class MY_Email extends CI_Email
             $this->_mailtype => $this->_message
         );
 
+        // Add a plain text version of the email
+        if($this->_mailtype != 'text') {
+            $data['text'] = htmlspecialchars(trim(strip_tags($this->_message)));
+        }
+
         if($this->_reply_to) {
             $data['h:Reply-To'] = $this->_reply_to;
         }
