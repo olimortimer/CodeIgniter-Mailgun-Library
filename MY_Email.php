@@ -17,6 +17,7 @@ class MY_Email extends CI_Email
     var $_from           = '';
     var $_subject        = '';
     var $_message        = '';
+    var $_tag            = '';
     var $_attachments    = array();
     var $_mailtype       = 'html';
 
@@ -88,6 +89,12 @@ class MY_Email extends CI_Email
         return $this;
     }
 
+    public function tag($tag)
+    {
+        $this->_tag = $tag;
+        return $this;
+    }
+
     public function attachments($attachments)
     {
         $this->_attachments[] = $attachments;
@@ -111,7 +118,8 @@ class MY_Email extends CI_Email
             'from'           => $this->_from,
             'to'             => $this->_to,
             'subject'        => $this->_subject,
-            $this->_mailtype => $this->_message
+            $this->_mailtype => $this->_message,
+            'o:tag'          => $this->_tag
         );
 
         if($this->_mailtype != 'text') {
