@@ -5,6 +5,11 @@ I created this as I wanted to start sending via the Mailgun API, but didn't want
 
 This is very much a WIP (Work In Progress), so some things may be missing.
 
+You will have to run following command to get the mailgun client. Then only the code will run.
+
+composer require mailgun/mailgun-php symfony/http-client nyholm/psr7
+
+
 ## Support on Beerpay
 Hey dude! Help me out for a couple of :beers:!
 
